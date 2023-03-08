@@ -1,0 +1,15 @@
+server:
+  port: 8081
+  error:
+    include-message: always
+  servlet:
+    context-path: /hookah-warehouse
+
+keycloak:
+  realm: hookah-cat-realm
+  auth-server-url: http://localhost:8080/auth
+  ssl-required: external
+  resource: hookah-cat
+  credentials:
+    secret: hookah-cat
+  use-resource-role-mappings: true
