@@ -27,6 +27,7 @@
         <jacoco.version>0.8.7</jacoco.version>
         <jackson.databind.version>2.14.2</jackson.databind.version>
         <apache.commons.collections.version>4.4</apache.commons.collections.version>
+        <flyway.maven.plugin.version>9.15.2</flyway.maven.plugin.version>
     </properties>
 
     <dependencies>
@@ -159,6 +160,12 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${project.parent.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>${flyway.maven.plugin.version}</version>
             </plugin>
         </plugins>
     </build>

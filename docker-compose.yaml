@@ -1,8 +1,7 @@
 version: "3.8"
-
 services:
   postgres:
-    image: postgres
+    image: bitnami/postgresql:latest
     container_name: postgres
     environment:
       POSTGRES_USER: postgres
@@ -10,6 +9,7 @@ services:
       POSTGRES_DB: warehouse
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
+      - ./V1__init_product_data.sql:/docker-entrypoint-initdb.d/V1__init_product_data.sql
     ports:
       - "5432:5432"
 
@@ -31,7 +31,6 @@ services:
       - "-Dkeycloak.import=/opt/jboss/keycloak/imports/hookah-cat-realm.json"
     ports:
       - "8080:8080"
-
 
   backend:
     build: .

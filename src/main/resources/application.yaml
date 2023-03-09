@@ -13,3 +13,18 @@ keycloak:
   credentials:
     secret: hookah-cat
   use-resource-role-mappings: true
+
+#postgreSQL
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/warehouse?useSSL=false&serverTimezone=UTC
+    username: postgres
+    password: postgres
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: create-drop
+
