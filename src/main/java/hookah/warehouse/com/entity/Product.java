@@ -1,5 +1,6 @@
 package hookah.warehouse.com.entity;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -36,13 +37,13 @@ public class Product {
   private String productName;
 
   @Column(name = "amount", nullable = false)
-  private Long amount;
+  private int amount;
 
   @Column(name = "purchase_price", nullable = false)
-  private Long purchasePrice;
+  private BigDecimal purchasePrice;
 
   @Column(name = "sale_price", nullable = false)
-  private Long salePrice;
+  private BigDecimal salePrice;
 
   @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = {
       CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH
