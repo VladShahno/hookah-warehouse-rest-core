@@ -3,9 +3,9 @@ package hookah.warehouse.com.service.impl;
 import static hookah.warehouse.com.common.Constants.NAME;
 import static net.logstash.logback.argument.StructuredArguments.keyValue;
 
-import hookah.warehouse.com.dto.ProductGroupRequestDto;
+import hookah.warehouse.com.dto.request.ProductGroupRequestDto;
 import hookah.warehouse.com.entity.ProductGroup;
-import hookah.warehouse.com.mapper.ProductGroupMapper;
+import hookah.warehouse.com.mapper.ProductMapper;
 import hookah.warehouse.com.repository.ProductGroupRepository;
 import hookah.warehouse.com.service.ProductGroupService;
 import jakarta.persistence.EntityExistsException;
@@ -21,14 +21,14 @@ import org.springframework.stereotype.Service;
 public class ProductGroupServiceImpl implements ProductGroupService {
 
   private final ProductGroupRepository productGroupRepository;
-  private final ProductGroupMapper productGroupMapper;
+  private final ProductMapper productMapper;
 
   @Override
   public ProductGroup createProductGroup(ProductGroupRequestDto requestDto) {
-    if (productGroupRepository.existsById(requestDto.getProductGroupName())) {
+    if (productGroupRepository.existsById(requestDto.productGroupName())) {
       throw new EntityExistsException("Product group already exists");
     }
-    var productGroup = productGroupMapper.toProductGroup(requestDto);
+    var productGroup = productMapper.toProductGroup(requestDto);
     productGroupRepository.save(productGroup);
     return productGroup;
   }
@@ -41,7 +41,7 @@ public class ProductGroupServiceImpl implements ProductGroupService {
 
   @Override
   public Page<ProductGroup> findAllProductGroups(Pageable pageable) {
-    log.debug("Getting All product groups");
+    log.debug("Getting all product groups");
     return productGroupRepository.findAll(pageable);
   }
 
@@ -49,5 +49,10 @@ public class ProductGroupServiceImpl implements ProductGroupService {
   public void deleteProductGroupByName(String productGroupName) {
     log.debug("Deleting product group with {}", keyValue(NAME, productGroupName));
     productGroupRepository.deleteById(productGroupName);
+  }
+
+  @Override
+  public boolean existsByName(String warehouseName) {
+    return productGroupRepository.existsById(warehouseName);
   }
 }

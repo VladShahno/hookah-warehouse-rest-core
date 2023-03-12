@@ -5,14 +5,9 @@ server:
   servlet:
     context-path: /hookah-warehouse
 
-keycloak:
-  realm: hookah-cat-realm
-  auth-server-url: http://localhost:8080/auth
-  ssl-required: external
-  resource: hookah-cat
-  credentials:
-    secret: hookah-cat
-  use-resource-role-mappings: true
+#url properties
+url:
+  base: http://localhost:8081/
 
 #postgreSQL
 spring:
@@ -26,5 +21,20 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: hookah-cat-core
+            authorization-grant-type: authorization_code
+            scope: openid
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8080/auth/realms/hookah-cat
+            user-name-attribute: preferred_username
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/auth/realms/hookah-cat
 
