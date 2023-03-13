@@ -33,22 +33,24 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
     allowGetters = true
 )
 public class Warehouse {
+
   @Id
   @Column(name = "name", unique = true, nullable = false)
-  private String wareHouseName;
-
+  private String warehouseName;
   @OneToMany(fetch = FetchType.LAZY, cascade = {
       CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH
   }, mappedBy = "warehouse")
   private Set<Product> products = new HashSet<>();
-
   @Temporal(TemporalType.TIMESTAMP)
   @Column(name = "date_created", updatable = false)
   @CreatedDate
   private Date created;
-
   @Temporal(TemporalType.TIMESTAMP)
   @Column(name = "date_updated")
   @LastModifiedDate
   private Date updated;
+
+  public Warehouse(String warehouseName) {
+    this.warehouseName = warehouseName;
+  }
 }

@@ -29,12 +29,12 @@ CREATE TABLE IF NOT EXISTS warehouses
 );
 
 INSERT INTO warehouses(name, date_created, date_updated)
-VALUES ('Hookah-cat', '2023-03-09T07:00:00', '2023-03-09T07:00:00');
+VALUES ('Hookah-cat', '2023-03-12 20:26:24.904000', '2023-03-12 20:26:24.904000');
 
 INSERT INTO product_groups(name, date_created, date_updated)
-VALUES ('Tobacco', '2023-03-09T07:00:00', '2023-03-09T07:00:00');
+VALUES ('Tobacco', '2023-03-12 20:26:24.904000', '2023-03-12 20:26:24.904000');
 
 INSERT INTO products(name, amount, article, date_created, purchase_price, sale_price, date_updated, product_group_name,
                      warehouse_name)
-VALUES ('420', '100', 'FF4341F53NH', '2023-03-09T07:00:00', '150.50', '200.75', '2023-03-09T07:00:00', 'Tobacco',
+VALUES ('420', '100', 'FF4341F53NH', '2023-03-12 20:26:24.904000', '150.50', '200.75', '2023-03-12 20:26:24.904000', 'Tobacco',
         'Hookah-cat');

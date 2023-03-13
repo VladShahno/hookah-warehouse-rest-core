@@ -51,4 +51,8 @@ public class ProductGroup {
   @Column(name = "date_updated")
   @LastModifiedDate
   private Date updated;
+
+  public ProductGroup(String productGroupName) {
+    this.productGroupName = productGroupName;
+  }
 }
